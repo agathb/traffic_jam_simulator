@@ -7,9 +7,6 @@ Created on Wed Jan 22 10:42:53 2025
 """
 
 import numpy as np
-import sys
-
-sys.path.append('/Users/fcalavaro/Documents/GitHub/traffic_jam_simulator/car_class.py')
 
 class Car:
     
