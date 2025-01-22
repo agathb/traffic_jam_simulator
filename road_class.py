@@ -12,7 +12,7 @@ class Road():   #This class as car as an input parameter
         position_memory = [] # memory of the position of the car
 
         while car.position[1] < self.length[1]:
-            car_position[1] = position_memory.append(car.position)
+            position_memory = position_memory.append(car.position[1])
             car.position += car.speed * dt
             print(f'car at {car.position} after a time {dt} s at speed {car.speed} m/s')
 
