@@ -18,11 +18,11 @@ class Car:
         self.speed = speed
         
         
-        
+
 # Test
         
 car1 = Car(np.array([1,2]), 2)
 
-print(car1.initial_position)
+print(car1.position)
         
         
