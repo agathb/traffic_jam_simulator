@@ -7,8 +7,6 @@ class Road():   #This class as car as an input parameter
 
     def dynamics(self, car, dt = np.array([1,1])):
 
-        car.speed = car.initial_speed   # initial speed of the car
-        car.position = car.initial_position   # initial position of the car
         position_memory = [] # memory of the position of the car
 
         while car.position[1] < self.length[1]:
