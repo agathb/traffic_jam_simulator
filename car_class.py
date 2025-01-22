@@ -7,6 +7,9 @@ Created on Wed Jan 22 10:42:53 2025
 """
 
 import numpy as np
+import sys
+
+sys.path.append('/Users/fcalavaro/Documents/GitHub/traffic_jam_simulator/car_class.py')
 
 class Car:
     
@@ -19,6 +22,6 @@ class Car:
         
 car1 = Car(np.arange(1, 3, 1), 2)
 
-print(car1.position)
+print(car1.initial_position)
         
         
