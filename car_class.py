@@ -20,7 +20,11 @@ class Car:
         self.initial_position = initial_position
         self.initial_speed = initial_speed
         
-car1 = Car(np.arange(1, 3, 1), 2)
+        
+        
+# Test
+        
+car1 = Car(np.array([1,2]), 2)
 
 print(car1.initial_position)
         
