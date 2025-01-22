@@ -11,11 +11,11 @@ import numpy as np
 class Car:
     
     def __init__(self,
-                 initial_position,
-                 initial_speed):
+                 position,
+                 speed):
         
-        self.initial_position = initial_position
-        self.initial_speed = initial_speed
+        self.position = position
+        self.speed = speed
         
         
         
