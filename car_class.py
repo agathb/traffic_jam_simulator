@@ -16,5 +16,3 @@ class Car:
 car1 = Car(np.array([1,2]), 2)
 
 print(car1.position)
-        
-        
