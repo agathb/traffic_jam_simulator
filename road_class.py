@@ -14,4 +14,4 @@ class Road():   #This class as car as an input parameter
             car.position += car.speed * dt
             print(f'car at {car.position} after a time {dt} s at speed {car.speed} m/s')
 
-        return car.speed
+        return
