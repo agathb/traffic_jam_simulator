@@ -5,8 +5,5 @@ This is a simple traffic jam simulator that I made for a school project. It is w
 Ciao agathe.
 
 Ideas: 
-class Car
-class Road
-class Dots #for visualizing the jam in the terminal
-class Dynamics #for the car dynamics
-class Response_time #for the driver response time and acceleration parameters
+class Car #has the size and the speed
+class Road #1D line first, updating the speed depending on the other cars with a for loop
