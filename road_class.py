@@ -28,7 +28,9 @@ class Road():   #This class as car as an input parameter
         car_size = self.car_size(car)
         time = np.linspace(0, t, len(position))
         print(t, dt, time, position)
-        plt.errorbar(time, np.array(position),fmt = '.', yerr = car_size/2)
+        plt.errorbar(time, np.array(position), fmt='.', color='green', markersize=8,
+                    capsize=0, elinewidth=10, alpha=0.5, yerr = car_size/2, xerr = car_size/40)
         plt.grid()
+        plt.tight_layout()
         plt.show()
 
