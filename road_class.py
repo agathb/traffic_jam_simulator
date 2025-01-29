@@ -7,7 +7,7 @@ class Road():
     def __init__(self,
                  length):
 
-        self.length = np.array([0,length])
+        self.length = np.array([0, length])
         self.map = lambda x : 50
 
     def dynamics(self, car, dt = 1):
