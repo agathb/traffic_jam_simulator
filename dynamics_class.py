@@ -33,8 +33,8 @@ class Dynamics():
     def animated_plot(self, car, road):
         fig, ax =  plt.subplots()
 
-        position = self.dynamics(car, road)
-        x_axis = np.linspace(0, self.length, len(position))
+        time, position = self.dynamics(car, road)
+        x_axis = np.linspace(0, road.length, len(position))
         car_position, = ax.errorbar(x_axis, position, self.map, yerr = self.car_size(car)/2) 
 
         def animate(i):
