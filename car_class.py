@@ -5,7 +5,8 @@ class Car:
     def __init__(self,
                  position,
                  speed,
-                 time_step):
+                 time_step
+                 movement_status):
         
         self.position = position
         self.speed = speed
