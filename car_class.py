@@ -7,14 +7,14 @@ class Car:
                  speed,
                  time_step = None,
                  ability_to_move = None,
-                 car_length = None,
-                 car_width = None,):
+                 length = None,
+                 width = None,):
 
         # The car position will be a vector of 2 elements, for both the front and back of the car.
         self.position = position
         self.speed = speed
-        self.car_length = self.position[1] - self.position[0]
-        self.car_width = (self.position[1] - self.position[0])/4
+        self.length = self.position[1] - self.position[0]
+        self.width = (self.position[1] - self.position[0])/4
 
         if self.position[1] <= self.position[0]:
 
