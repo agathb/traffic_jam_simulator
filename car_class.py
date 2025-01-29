@@ -5,29 +5,32 @@ class Car:
     def __init__(self,
                  position,
                  speed,
-                 time_step
-                 movement_status):
-        
+                 time_step = None,
+                 ability_to_move = None):
+
+        # The car position will be a vector of 2 elements, for both the front and back of the car.
         self.position = position
         self.speed = speed
-        self.time_step = time_step
 
-    def move(self, time_step):
+    def move_straight(self, time_step):
 
         position_history = []
-        time_step = np.array([time_step, time_step])
+        time_step = np.array([time_step, time_step]) # Array because car position is an array.
         current_time = 0
 
-        while movement = True: # car.position[1] is the position of the front of the car
-            position_memory.append(car.position[1])
-            car.position += car.speed * time_step
-            time += dt
-            print(f'car at {car.position} after a time {time} s at speed {car.speed} m/s')
+        position_history.append(self.position)
+        self.position += self.speed * time_step
+        current_time += time_step[0]
+        print(f'\nCar at {self.position} after a time of {current_time} s at speed {self.speed} m/s.')
 
-        return time, dt, position_memory
+        return current_time, position_history
 
-# Test
-        
+# Test.
+
+time_step = 1
+
 car1 = Car(np.array([1,2]), 2)
 
-print(car1.position)
+print(f'\nStarting position of the car: {car1.position}')
+
+car1.move_straight(1)
