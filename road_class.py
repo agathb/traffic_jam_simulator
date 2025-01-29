@@ -1,5 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 class Road():   #This class as car as an input parameter
     def __init__(self, length = 100):
@@ -31,4 +32,16 @@ class Road():   #This class as car as an input parameter
         plt.errorbar(time, np.array(position),fmt = '.', yerr = car_size/2)
         plt.grid()
         plt.show()
+
+    def animated_plot(self, car):
+        fig, ax =  plt.subplots()
+
+        t, dt, position = self.dynamics(car)
+        time = np.linspace(0, t, len(position))
+        car_position = ax.plot(time, position)
+
+    def animate(i):
+        
+
+        
 
