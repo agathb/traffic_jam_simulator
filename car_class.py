@@ -16,14 +16,12 @@ class Car:
 
         position_history = []
         time_step = np.array([time_step, time_step]) # Array because car position is an array.
-        current_time = 0
 
         position_history.append(self.position)
         self.position += self.speed * time_step
-        current_time += time_step[0]
-        print(f'\nCar at {self.position} after a time of {current_time} s at speed {self.speed} m/s.')
+        print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
 
-        return current_time, position_history
+        return position_history
 
 # Test.
 
