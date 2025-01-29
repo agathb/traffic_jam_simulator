@@ -5,6 +5,7 @@ import matplotlib.animation as animation
 class Road():   #This class as car as an input parameter
     def __init__(self, length = 100):
         self.length = np.array([0,length])
+        self.map = lambda x : 50
 
     def dynamics(self, car, dt = 1):
 
@@ -39,11 +40,16 @@ class Road():   #This class as car as an input parameter
         fig, ax =  plt.subplots()
 
         t, dt, position = self.dynamics(car)
-        time = np.linspace(0, t, len(position))
-        car_position = ax.plot(time, position)
+        x_axis = np.linspace(0, self.length, len(position))
+        car_position, = ax.errorbar(x_axis, position, self.map, yerr = self.car_size(car)/2) 
+
+        ani = animation.FuncAnimation(
+        fig, animate, interval=20, blit=True, save_count=50)
 
     def animate(i):
-        
+        car_position.set_ydata(np.sin(x + i / 50))  # update the data.
+        return position[i]
+    
 
         
 
