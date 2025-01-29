@@ -8,11 +8,18 @@ class Dynamics():
 
     def dynamics(self, car, road):
         car.ability_to_move = True
-        position_history = []
+        position_history = [car.position]
         time = 0
 
-        while car.position[1] < road.length[1]:
+        while car.ability_to_move == True:
             position_history.append(car.move(self.time_step))
+            time += self.time_step
+
+            if car.position[1] > road.length:
+                car.ability_to_move = False
+                print(f'Car stopped at the end of the road after a time {time} s.')
+
+        return time, position_history
 
     
     def animated_plot(self, car, road):
