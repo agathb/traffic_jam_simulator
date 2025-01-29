@@ -14,14 +14,11 @@ class Car:
 
     def move_straight(self, time_step):
 
-        position_history = []
         time_step = np.array([time_step, time_step]) # Array because car position is an array.
-
-        position_history.append(self.position)
         self.position += self.speed * time_step
         print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
 
-        return position_history
+        return self.position
 
 # Test.
 

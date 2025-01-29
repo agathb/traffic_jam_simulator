@@ -2,8 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-class Road():   #This class as car as an input parameter
-    def __init__(self, length = 100):
+class Road():
+
+    def __init__(self,
+                 length):
+
         self.length = np.array([0,length])
         self.map = lambda x : 50
 
