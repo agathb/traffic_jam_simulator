@@ -2,8 +2,8 @@
 
 Ideas: 
 
-class Car #has the size and the speed
+class Car #has the size, speed and moving one step ahead function
 
-class Road #1D line first, updating the speed depending on the other cars with a for loop
+class Road #1D line first
 
-#do the animated plot with matplotlib and add more cars
+class Dynamics loops over the single movement of the cars

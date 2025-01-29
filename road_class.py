@@ -38,21 +38,3 @@ class Road():
         plt.grid()
         plt.tight_layout()
         plt.show()
-
-    # def animated_plot(self, car):
-    #     fig, ax =  plt.subplots()
-
-    #     t, dt, position = self.dynamics(car)
-    #     x_axis = np.linspace(0, self.length, len(position))
-    #     car_position, = ax.errorbar(x_axis, position, self.map, yerr = self.car_size(car)/2) 
-
-    #     ani = animation.FuncAnimation(
-    #     fig, animate, interval=20, blit=True, save_count=50)
-
-    # def animate(i):
-    #     car_position.set_ydata(np.sin(x + i / 50))  # update the data.
-    #     return position[i]
-    
-
-        
-
