@@ -1,6 +1,7 @@
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 def animated_plot(car, road, time_step, dynamics_initialized):
 
@@ -14,7 +15,7 @@ def animated_plot(car, road, time_step, dynamics_initialized):
     line, = ax.plot([], [], color='green', label="Car", linewidth=car.width * 2)
 
     ax.plot([road.starting_position, road.end_position], [45, 45], color='black',
-            linestyle='-', linewidth=1.1, label="Road edge")
+            linestyle='-', linewidth=1.1, label='Road edge')
     ax.plot([road.starting_position, road.end_position], [35, 35], color='black',
             linestyle='-', linewidth=1.1)
 
@@ -23,10 +24,11 @@ def animated_plot(car, road, time_step, dynamics_initialized):
     ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.7)
     fig.tight_layout()
 
-    ax.set_xlabel("Space [m]")
-    ax.set_ylabel("Space [m]")
-    ax.set_title("Traffic simulation")
-    ax.legend(facecolor='white', edgecolor='black', borderpad=1.5)
+    ax.set_xlabel('Space [m]')
+    ax.set_ylabel('Space [m]')
+    ax.set_title('Traffic simulation')
+    ax.legend([f'Car (speed: {car.speed} m/s)', 'Road edge'], facecolor='white',
+              edgecolor='black', borderpad=1.5)
 
     plt.subplots_adjust(left=0.2, right=0.8, top=0.8, bottom=0.2)
 
@@ -35,12 +37,14 @@ def animated_plot(car, road, time_step, dynamics_initialized):
         transform=ax.transAxes, fontsize=10, color='Black',
         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3', alpha=0.8))
 
+    #start_time = time.time()
+
     def update(frame):
         
         line.set_xdata(positions[frame])
         line.set_ydata([y_axis[frame], y_axis[frame]])
         elapsed_time = frame * time_step
-        time_text.set_text(f"Time: {elapsed_time:.2f} s")
+        time_text.set_text(f'Time: {elapsed_time:.2f} s')
 
         return line, time_text
 
