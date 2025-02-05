@@ -76,5 +76,5 @@ class Dynamics:
 
         ani = animation.FuncAnimation(fig, update, frames=len(position), interval=100, blit=True)
         plt.show()
-#pause button, timer, roads
+
         return ani

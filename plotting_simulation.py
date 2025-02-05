@@ -1,7 +1,6 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import time # To implement real time timer.
+import matplotlib.pyplot as plt
+import numpy as np
 
 def animated_plot(car, road, time_step, dynamics_initialized):
 
@@ -27,7 +26,7 @@ def animated_plot(car, road, time_step, dynamics_initialized):
     ax.set_xlabel("Space [m]")
     ax.set_ylabel("Space [m]")
     ax.set_title("Traffic simulation")
-    ax.legend()
+    ax.legend(facecolor='white', edgecolor='black', borderpad=1.5)
 
     plt.subplots_adjust(left=0.2, right=0.8, top=0.8, bottom=0.2)
 
@@ -37,6 +36,7 @@ def animated_plot(car, road, time_step, dynamics_initialized):
         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3', alpha=0.8))
 
     def update(frame):
+        
         line.set_xdata(positions[frame])
         line.set_ydata([y_axis[frame], y_axis[frame]])
         elapsed_time = frame * time_step

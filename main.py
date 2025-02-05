@@ -15,6 +15,6 @@ print(f'\nCar starting position of the car: {car.position}')
 
 road = r.Road(0, 80)
 
-dynamics_initialized = d.Dynamics(time_step)
+initialize_dynamics = d.Dynamics(time_step)
 
-p.animated_plot(car, road, time_step, dynamics_initialized)
+p.animated_plot(car, road, time_step, initialize_dynamics)

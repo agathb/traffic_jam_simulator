@@ -36,13 +36,3 @@ class Car:
         #print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
 
         return self.position
-
-# Test.
-
-#time_step = 1
-
-#car1 = Car(np.array([1,2]), 2)
-
-#print(f'\nStarting position of the car: {car1.position}')
-
-#car1.move_straight(1)
