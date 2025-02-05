@@ -15,9 +15,9 @@ def animated_plot(car, road, time_step, dynamics_initialized):
 
     line, = ax.plot([], [], color='green', label="Car", linewidth=car.width * 2)
 
-    ax.plot([road.starting_position, road.end_position], [45, 45], color='black',
+    ax.plot([road.starting_position, road.end_position], [43, 43], color='black',
             linestyle='-', linewidth=1.1, label='Road edge')
-    ax.plot([road.starting_position, road.end_position], [35, 35], color='black',
+    ax.plot([road.starting_position, road.end_position], [37, 37], color='black',
             linestyle='-', linewidth=1.1)
 
     ax.set_xlim([-20, road.length + 20])
@@ -31,7 +31,7 @@ def animated_plot(car, road, time_step, dynamics_initialized):
     ax.legend([f'Car (speed: {car.speed} m/s)', 'Road edge'], facecolor='white',
               edgecolor='black', borderpad=1.5)
 
-    plt.subplots_adjust(left=0.2, right=0.8, top=0.8, bottom=0.2)
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
 
     time_text = ax.text(
         0.05, 0.9, '',
