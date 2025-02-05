@@ -14,7 +14,7 @@ class Car:
         self.position = position.astype(float)
         self.speed = speed
         self.length = self.position[1] - self.position[0]
-        self.width = (self.position[1] - self.position[0])/4
+        self.width = self.position[1] - self.position[0]
 
 
         if self.position[1] <= self.position[0]:

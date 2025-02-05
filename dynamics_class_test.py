@@ -1,0 +1,29 @@
+class Dynamics:
+
+    def __init__(self,
+                 time_step):
+
+        self.time_step = time_step
+
+    def dynamics(self,
+                 car,
+                 road):
+
+        position_history = [car.position.copy()]
+        time = 0
+        # set it to false if outside of road
+
+        # car is on the road, it can move
+        car.ability_to_move = True
+
+        while car.ability_to_move:
+
+            current_position = car.move(self.time_step)
+            position_history.append(current_position.copy())
+            time += self.time_step
+
+            if car.position[1] >= road.length:
+                car.ability_to_move = False
+                print(f'\nCar stopped at the end of the road after a time of {time} s.')
+
+        return time, position_history

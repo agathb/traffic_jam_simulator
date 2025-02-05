@@ -1,18 +1,20 @@
 import numpy as np
 import car_class as c
 import road_class as r
-import dynamics_test as d
+import dynamics_class_test as d
+import plotting_simulation as p
 import matplotlib
 
 matplotlib.use('TkAgg') # For the animated plot.
 
-time_step = 0.1
+time_step = 0.5
 
 car = c.Car(np.array([1, 4]), 5)
 
 print(f'\nCar starting position of the car: {car.position}')
 
-road = r.Road(1, 100)
+road = r.Road(0, 80)
 
-dynamics = d.Dynamics(time_step)
-dynamics.handmade_animated_plot(car, road)
+dynamics_initialized = d.Dynamics(time_step)
+
+p.animated_plot(car, road, time_step, dynamics_initialized)
