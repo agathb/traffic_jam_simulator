@@ -18,5 +18,3 @@ road = r.Road(0, 80)
 initialize_dynamics = d.Dynamics(time_step)
 
 p.animated_plot(car, road, time_step, initialize_dynamics)
-
-# To be modified for the new dynamics class.
