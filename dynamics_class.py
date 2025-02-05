@@ -30,7 +30,7 @@ class Dynamics:
             if car.position[1] >= road.length:
 
                 car.ability_to_move = False
-                print(f'\nCar stopped at the end of the road after a time of {time} s.')
+                print(f'\nCar stopped at the end of the road after a time of {time} s.\n')
         # obstacle list input as *args, that stops the ability to move if near obstacle
 
 
