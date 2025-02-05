@@ -10,12 +10,13 @@ class Dynamics:
         self.time_step = time_step
 
     def dynamics(self,
-                 car,
-                 road):
+                 road, 
+                 *args):
 
         
-        position_history = [car.position.copy()]
+        position_history = [args.position.copy()]
         time = 0
+<<<<<<< Updated upstream
         # set it to false if outside of road
 
         # car is on the road, it can move
@@ -28,12 +29,33 @@ class Dynamics:
             time += self.time_step
 
             if car.position[1] >= road.length:
+=======
+>>>>>>> Stashed changes
 
+        for index, car in enumerate(args):
+            if car.position[1] >= road.end.position or car.position[0] <= road.starting_position: #if front of back of each car is not on the road initially, stop the ability to move
                 car.ability_to_move = False
-                print(f'\nCar stopped at the end of the road after a time of {time} s.\n')
-        # obstacle list input as *args, that stops the ability to move if near obstacle
+                print(f'\nCar {index} is not on the road.')
+            else: # car is on the road, it can move
+                car.ability_to_move = True
+                print('All the cars are on the road, they may move.')
+        
 
 
+        for index, car in enumerate(args):
+
+            if car.position[1] >= args(index+1).position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
+                car.ability_to_move = False
+                print(f'\nCar {index} is too close to the car in front at time ')
+
+            if car.ability_to_move == True:
+                
+                current_position = car.move(self.time_step)
+                position_history.append(current_position.copy())
+                print(f'\nCar {index} is too close to the car in front at time {time}.')
+                break
+            time += self.time_step
+            
         return time, position_history
 
     def handmade_animated_plot(self, car, road):
