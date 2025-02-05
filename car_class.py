@@ -8,7 +8,7 @@ class Car:
                  time_step = None,
                  ability_to_move = None,
                  length = None,
-                 width = None,):
+                 width = None):
 
         # The car position will be a vector of 2 elements, for both the front and back of the car.
         self.position = position.astype(float)
