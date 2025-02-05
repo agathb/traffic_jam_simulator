@@ -30,8 +30,6 @@ class Dynamics():
 
         return time, position_history
 
-    
-
     def handmade_animated_plot(self, car, road):
         time, position_list = self.dynamics(car, road)
         position = np.array(position_list)
@@ -44,12 +42,13 @@ class Dynamics():
         ax.set_ylim([0, road.length[1]])
 
         def update(frame):
+
             line.set_xdata([x_axis[frame], x_axis[frame]])
             line.set_ydata(position[frame])
+
             return line,
 
         ani = animation.FuncAnimation(fig, update, frames=len(position), interval=100, blit=True)
         plt.show()
 
         return ani
-       
