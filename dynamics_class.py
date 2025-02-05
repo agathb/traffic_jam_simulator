@@ -5,8 +5,6 @@ class Dynamics:
 
         self.time_step = time_step
 
-    # Where is the class 'cars'?
-
     def dynamics(self,
                  road, 
                  cars):
