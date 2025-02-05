@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-class Dynamics():
+class Dynamics:
 
     def __init__(self,
                  time_step):
