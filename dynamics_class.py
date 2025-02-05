@@ -23,7 +23,7 @@ class Dynamics:
 
         while car.ability_to_move == True:
 
-            current_position = car.move_straight(self.time_step)
+            current_position = car.move(self.time_step)
             position_history.append(current_position.copy())
             time += self.time_step
 
