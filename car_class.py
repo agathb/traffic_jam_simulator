@@ -33,7 +33,7 @@ class Car:
 
         time_step = np.array([time_step, time_step]) # Array because car position is an array.
         self.position += self.speed * time_step
-        print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
+        #print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
 
         return self.position
 

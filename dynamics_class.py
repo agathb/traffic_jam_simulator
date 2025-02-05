@@ -11,37 +11,39 @@ class Dynamics:
 
     def dynamics(self,
                  road, 
-                 *args):
+                 cars):
 
 
-        for index, car in enumerate(args):
+        for index, car in enumerate(cars):
             if car.position[1] >= road.end_position or car.position[0] <= road.starting_position: #if front of back of each car is not on the road initially, stop the ability to move
                 car.ability_to_move = False
                 print(f'\nCar {index} is not on the road.')
             else: # car is on the road, it can move
                 car.ability_to_move = True
-                print('All the cars are on the road, they may move.')
+                print(f'Car {index} is on the road, it may move.')
         
-        position_history = [car.position.copy() for car in args]
+        position_history = [cars.get_positions()]
         time = 0
-        car_list = []
 
-        for k, car in enumerate(args):
-            car_list.append(car)
-            print(f'\nCar list {car_list}.')
+        while cars[0].position[1] <= road.end_position : #while the first car is still on the road, keep moving the cars
 
-        while time < 10 : #time is set to 100, can be changed
+            # Stop the cars if they are too close to the car in front
+            for k in range(len(cars)-1):
 
-            for k in range(1, len(car_list) - 1):
-                if car_list[k].position[1] >= car_list[k+1].position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
-                    car_list[k].ability_to_move = False
-                    print(f'\nCar {k} is too close to the car in front at time ')
+                if cars[k].position[1] >= cars[k+1].position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
+                    cars[k].ability_to_move = False
+                    print(f'\nCar {k} stoped bc it is too close to the car {k+1} in front at time {time} ')
+                else:
+                    cars[k].ability_to_move = True
 
-            if car_list[k].ability_to_move == True:
+            # Move the cars that have the ability to move
+            for k in range(len(cars)):
+
+                if cars[k].ability_to_move == True:
                     
-                current_position = car_list[k].move(self.time_step)
-                position_history.append(current_position.copy())
-                print(f'\nCar {index} is at {current_position} at {time}.')
+                    current_position = cars[k].move(self.time_step)
+                    position_history.append(current_position.copy())
+                    print(f'\nCar {k} is at {current_position} at {time}.')
                     
                 
             time += self.time_step
