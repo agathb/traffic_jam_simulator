@@ -9,13 +9,14 @@ matplotlib.use('TkAgg') # For the animated plot.
 
 time_step = 0.1
 
-car1 = c.Car(np.array([5, 8]), 10) #The first car has to be the one that is closest to the end position of the road.
-car2 = c.Car(np.array([2, 4]), 10)
+car1 = c.Car(np.array([15, 20]), 20) #The first car has to be the one that is closest to the end position of the road.
+car2 = c.Car(np.array([4, 8]), 10)
+car3 = c.Car(np.array([2, 3]), 20)
 
 #print(f'\nCar starting position of the car: {car.position}')
 
 road = r.Road(1, 100)
-car_lists = cs.Cars([car1, car2])
+car_lists = cs.Cars([car1, car2, car3])
 print(car_lists.get_positions())
 dynamics = d.Dynamics(time_step)
 dynamics.dynamics(road, car_lists)

@@ -20,34 +20,40 @@ class Dynamics:
                 print(f'\nCar {index} is not on the road.')
             else: # car is on the road, it can move
                 car.ability_to_move = True
-                print(f'Car {index} is on the road, it may move.')
+                print(f'Car {index} is on the road, at {car.position} it may move.')
         
         position_history = [cars.get_positions()]
         time = 0
 
-        while cars[0].position[1] <= road.end_position : #while the first car is still on the road, keep moving the cars
+        while cars[0].position[1] < road.end_position : #while the first car is still on the road, keep moving the cars
 
             # Stop the cars if they are too close to the car in front
-            for k in range(len(cars)-1):
+            for k in range(len(cars)-1, 1, -1): #the loop starts with the last car and goes to the first car
 
-                if cars[k].position[1] >= cars[k+1].position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
+                if cars[k].position[1] >= cars[k-1].position[0] - 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
                     cars[k].ability_to_move = False
-                    print(f'\nCar {k} stoped bc it is too close to the car {k+1} in front at time {time} ')
+                    print(f'cars {k} position {cars[k].position[1]} and car {k-1} position 0 {cars[k-1].position[0]}')
+                    print(f'\nCar {k} stoped at {cars[k].position[1]} bc it is too close to the car {k-1} at {cars[k-1].position[0]} in front at time {time} ')
                 else:
                     cars[k].ability_to_move = True
 
             # Move the cars that have the ability to move
             for k in range(len(cars)):
-
+                print(f'\nCar {k} is at {cars[k].position} at {time}.')
                 if cars[k].ability_to_move == True:
                     
-                    current_position = cars[k].move(self.time_step)
-                    position_history.append(current_position.copy())
-                    print(f'\nCar {k} is at {current_position} at {time}.')
+                    cars[k].position = cars[k].move(self.time_step)
+                    #print(f'\nCar {k} is at {cars[k].position} at {time}.')
+
+            
+            position_history.append(cars.get_positions().copy())
+            
                     
                 
             time += self.time_step
-            
+
+        print(f'\nFinal positions of the cars: {cars.get_positions()}')
+        print(f'\nPosition history: {position_history}')
         return time, position_history
 
     def handmade_animated_plot(self, car, road):
