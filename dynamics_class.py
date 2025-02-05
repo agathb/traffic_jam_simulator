@@ -23,7 +23,7 @@ class Dynamics:
             position_history.append(current_position.copy())
             time += self.time_step
 
-            if car.position[1] >= road.length[1]:
+            if car.position[1] >= road.length:
 
                 car.ability_to_move = False
                 print(f'\nCar stopped at the end of the road after a time of {time} s.')
@@ -33,13 +33,13 @@ class Dynamics:
     def handmade_animated_plot(self, car, road):
         time, position_list = self.dynamics(car, road)
         position = np.array(position_list)
-        x_linsp = np.linspace(0, road.length[1], len(position))
+        x_linsp = np.linspace(0, road.length, len(position))
         x_axis = np.ones(len(position))
 
         fig, ax = plt.subplots()
         line, = ax.plot([], [])
-        ax.set_xlim([0, road.length[1]])
-        ax.set_ylim([0, road.length[1]])
+        ax.set_xlim([0, road.length])
+        ax.set_ylim([0, road.length])
 
         def update(frame):
 
