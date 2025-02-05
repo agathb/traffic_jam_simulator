@@ -13,9 +13,13 @@ class Dynamics:
                  car,
                  road):
 
-        car.ability_to_move = True
+        
         position_history = [car.position.copy()]
         time = 0
+        # set it to false if outside of road
+
+        # car is on the road, it can move
+        car.ability_to_move = True
 
         while car.ability_to_move == True:
 
@@ -27,6 +31,8 @@ class Dynamics:
 
                 car.ability_to_move = False
                 print(f'\nCar stopped at the end of the road after a time of {time} s.')
+        # obstacle list input as *args, that stops the ability to move if near obstacle
+
 
         return time, position_history
 
@@ -50,5 +56,5 @@ class Dynamics:
 
         ani = animation.FuncAnimation(fig, update, frames=len(position), interval=100, blit=True)
         plt.show()
-
+#pause button, timer, roads
         return ani
