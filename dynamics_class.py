@@ -63,6 +63,27 @@ class Dynamics():
     #     return ani
 
     def handmade_animated_plot(self, car, road):
+        time, position_list = self.dynamics(car, road)
+        position = np.array(position_list)
+        x_linsp = np.linspace(0, road.length[1], len(position))
+        x_axis = np.ones(len(position))
+
+        fig, ax = plt.subplots()
+        line, = ax.plot([], [])
+        ax.set_xlim([0, road.length[1]])
+        ax.set_ylim([0, road.length[1]])
+
+        def update(frame):
+            line.set_xdata([x_axis[frame], x_axis[frame]])
+            line.set_ydata(position[frame])
+            return line,
+
+        ani = animation.FuncAnimation(fig, update, frames=len(position), interval=100, blit=True)
+        plt.show()
+
+        return ani
+'''
+    def handmade_animated_plot(self, car, road):
 
         time, position_list = self.dynamics(car, road)
         position = np.array(position_list)
@@ -85,5 +106,5 @@ class Dynamics():
 
         plt.ioff()  # Turn off interactive mode       
 
-
+'''
        
