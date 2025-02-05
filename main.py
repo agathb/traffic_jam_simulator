@@ -13,4 +13,4 @@ road = r.Road(100)
 #road.plot(car1)
 
 dynamics = d.Dynamics(time_step)
-dynamics.animated_plot(car1, road)
+dynamics.handmade_animated_plot(car1, road)

@@ -38,10 +38,10 @@ class Car:
 
 # Test.
 
-time_step = 1
+#time_step = 1
 
-car1 = Car(np.array([1,2]), 2)
+#car1 = Car(np.array([1,2]), 2)
 
-print(f'\nStarting position of the car: {car1.position}')
+#print(f'\nStarting position of the car: {car1.position}')
 
-car1.move_straight(1)
+#car1.move_straight(1)
