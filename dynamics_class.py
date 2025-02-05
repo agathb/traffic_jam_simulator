@@ -31,36 +31,6 @@ class Dynamics():
         return time, position_history
 
     
-    # def animated_plot(self, car, road):
-    #     fig, ax = plt.subplots()
-
-    #     _, position_list = self.dynamics(car, road)
-    #     position = np.array(position_list)
-    #     #car_front, car_back = position[:,0], position[:,1]
-    #     print(type(position),'position', position, 'position1', position[1])
-    #     center_car_position = position[:,0] + car.length/2
-    #     #print('center is',center_car_position)
-    #     x_axis = np.linspace(0, road.length[1], len(position))
-    #     #print(len(x_axis), len(center_position))
-    #     car_position, = ax.plot(x_axis, center_car_position, 'x')
-    #     #car_position, ( car_bottom, car_tops), verts = ax.errorbar(x_axis, center_car_position, yerr = car.width/2, xerr=car.length/2, fmt='o') 
-    #     #road_position = ax.plot(x_axis, road.map(x_axis), color='black')
-    #     #y_err = car.width/2
-    #     #x_err = car.length/2
-        
-    #     def init():
-    #         car_position.set_data([], [])
-    #         return car_position,
-
-    #     def animate(i):
-    #         car_position.set_xdata(position[i])  # update
-    #         return car_position,
-
-    #     ani = animation.FuncAnimation(fig, animate, init_func=init, frames=len(center_car_position), interval=20, blit=False, repeat = False)
-
-    #     plt.show()
-
-    #     return ani
 
     def handmade_animated_plot(self, car, road):
         time, position_list = self.dynamics(car, road)
@@ -82,29 +52,4 @@ class Dynamics():
         plt.show()
 
         return ani
-'''
-    def handmade_animated_plot(self, car, road):
-
-        time, position_list = self.dynamics(car, road)
-        position = np.array(position_list)
-        x_linsp = np.linspace(0, road.length[1], len(position))
-        x_axis = np.ones(len(position))
-        print(position, x_axis)
-
-        fig, ax = plt.subplots()
-
-        line, = ax.plot([x_axis[0], x_axis[0]], position[0])
-        plt.ion()  # Turn on interactive mode
-        plt.show()
-
-        for t in range(time):
-            line.set_xdata([x_axis[t],x_axis[t]])
-            line.set_ydata(position[t])
-            fig.canvas.draw()
-            fig.canvas.flush_events()
-            plt.pause(0.1)
-
-        plt.ioff()  # Turn off interactive mode       
-
-'''
        
