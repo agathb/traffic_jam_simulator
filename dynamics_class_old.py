@@ -11,9 +11,8 @@ class Dynamics:
 
         position_history = [car.position.copy()]
         time = 0
-        # set it to false if outside of road
 
-        # car is on the road, it can move
+        # The car is on the road, so it can move.
         car.ability_to_move = True
 
         while car.ability_to_move:
@@ -24,6 +23,6 @@ class Dynamics:
 
             if car.position[1] >= road.length:
                 car.ability_to_move = False
-                print(f'\nCar stopped at the end of the road after a time of {time} s.')
+                print(f'\nCar stopped at the end of the road after a time of {time} s.\n')
 
         return time, position_history
