@@ -13,24 +13,6 @@ class Dynamics:
                  road, 
                  *args):
 
-        
-        position_history = [args.position.copy()]
-        time = 0
-<<<<<<< Updated upstream
-        # set it to false if outside of road
-
-        # car is on the road, it can move
-        car.ability_to_move = True
-
-        while car.ability_to_move == True:
-
-            current_position = car.move(self.time_step)
-            position_history.append(current_position.copy())
-            time += self.time_step
-
-            if car.position[1] >= road.length:
-=======
->>>>>>> Stashed changes
 
         for index, car in enumerate(args):
             if car.position[1] >= road.end.position or car.position[0] <= road.starting_position: #if front of back of each car is not on the road initially, stop the ability to move
@@ -40,20 +22,24 @@ class Dynamics:
                 car.ability_to_move = True
                 print('All the cars are on the road, they may move.')
         
+        position_history = [args.position.copy()]
+        time = 0
 
+        while time < 10 : #time is set to 100, can be changed
 
-        for index, car in enumerate(args):
+            for index, car in enumerate(args):
 
-            if car.position[1] >= args(index+1).position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
-                car.ability_to_move = False
-                print(f'\nCar {index} is too close to the car in front at time ')
+                if car.position[1] >= args(index+1).position[0] + 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
+                    car.ability_to_move = False
+                    print(f'\nCar {index} is too close to the car in front at time ')
 
-            if car.ability_to_move == True:
+                if car.ability_to_move == True:
+                    
+                    current_position = car.move(self.time_step)
+                    position_history.append(current_position.copy())
+                    print(f'\nCar {index} is too close to the car in front at time {time}.')
+                    break
                 
-                current_position = car.move(self.time_step)
-                position_history.append(current_position.copy())
-                print(f'\nCar {index} is too close to the car in front at time {time}.')
-                break
             time += self.time_step
             
         return time, position_history
