@@ -66,19 +66,24 @@ class Dynamics():
 
         time, position_list = self.dynamics(car, road)
         position = np.array(position_list)
-        x_linsp = np.linspace(0, len(position), len(position))  
-        print(position, x_linsp)
+        x_linsp = np.linspace(0, road.length[1], len(position))
+        x_axis = np.ones(len(position))
+        print(position, x_axis)
+
+        fig, ax = plt.subplots()
+
+        line, = ax.plot([x_axis[0], x_axis[0]], position[0])
+        plt.ion()  # Turn on interactive mode
+        plt.show()
 
         for t in range(time):
-            
-            if t == 0:
-                line, = plt.plot([], [])
-            else: 
-                line.set_xdata(position[t])
-                line.set_ydata(np.ones(len(position[t])))
+            line.set_xdata([x_axis[t],x_axis[t]])
+            line.set_ydata(position[t])
+            fig.canvas.draw()
+            fig.canvas.flush_events()
             plt.pause(0.1)
 
-        plt.show()          
+        plt.ioff()  # Turn off interactive mode       
 
 
        
