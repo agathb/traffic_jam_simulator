@@ -1,11 +1,12 @@
 import matplotlib.animation as animation
+from matplotlib.widgets import Button
 import matplotlib.pyplot as plt
 import numpy as np
 import time
 
 def animated_plot(car, road, time_step, dynamics_initialized):
 
-    time, position_list = dynamics_initialized.dynamics(car, road)
+    simulated_time, position_list = dynamics_initialized.dynamics(car, road)
 
     positions = np.array(position_list)
     y_axis = np.ones(len(positions)) * 40  # A way to choose where the fixed y-axis is.
@@ -39,10 +40,18 @@ def animated_plot(car, road, time_step, dynamics_initialized):
 
     #start_time = time.time()
 
+    is_paused = [False]
+
     def update(frame):
+
+        if is_paused[0]:
+
+            return line, time_text
         
         line.set_xdata(positions[frame])
         line.set_ydata([y_axis[frame], y_axis[frame]])
+
+        #elapsed_time = time.time() - start_time
         elapsed_time = frame * time_step
         time_text.set_text(f'Time: {elapsed_time:.2f} s')
 
@@ -50,8 +59,18 @@ def animated_plot(car, road, time_step, dynamics_initialized):
 
     animated_plot = animation.FuncAnimation(fig, update, frames=len(positions),
                                             interval=100, blit=True)
+
+    button_ax = plt.axes([0.4, 0.02, 0.2, 0.075])
+    pause_button = Button(button_ax, 'Pause/Play')
+
+    def toggle_pause(event):
+
+        is_paused[0] = not is_paused[0]
+
+    pause_button.on_clicked(toggle_pause)
+
     plt.show()
 
     return animated_plot
 
-# Let's add a pause button and a real time timer.
+# The pause button and real timer work but simulation doesn't stop.

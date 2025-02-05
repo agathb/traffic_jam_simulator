@@ -1,7 +1,3 @@
-import numpy as np 
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-
 class Dynamics:
 
     def __init__(self,
@@ -9,54 +5,66 @@ class Dynamics:
 
         self.time_step = time_step
 
+    # Where is the class 'cars'?
+
     def dynamics(self,
                  road, 
                  cars):
 
-
         for index, car in enumerate(cars):
-            if car.position[1] >= road.end_position or car.position[0] <= road.starting_position: #if front of back of each car is not on the road initially, stop the ability to move
+
+            # If the front or back of each car is not on the road initially, stops the ability to move.
+            if car.position[1] >= road.end_position or car.position[0] <= road.starting_position:
+
                 car.ability_to_move = False
                 print(f'\nCar {index} is not on the road.')
-            else: # car is on the road, it can move
+
+            else: # The car is on the road, so it can move.
                 car.ability_to_move = True
-                print(f'Car {index} is on the road, at {car.position} it may move.')
+                print(f'\nCar {index} is on the road, at {car.position} it may move.')
         
         position_history = [cars.get_positions()]
         time = 0
 
-        while cars[0].position[1] < road.end_position : #while the first car is still on the road, keep moving the cars
+        while cars[0].position[1] < road.end_position : # While the first car is still on the road, keep moving the cars.
 
-            # Stop the cars if they are too close to the car in front
-            for k in range(len(cars)-1, 1, -1): #the loop starts with the last car and goes to the first car
+            # Stops the cars if they are too close to the car in front.
+            for k in range(len(cars)-1, 1, -1): # The loop starts with the last car and goes to the first car.
 
-                if cars[k].position[1] >= cars[k-1].position[0] - 1: #if the front of the car is within 1m of the back of the car in front, stop the ability to move
+                # If the front of the car is within 1m of the back of the car in front, this stops the ability to move.
+                if cars[k].position[1] >= cars[k-1].position[0] - 1:
+
                     cars[k].ability_to_move = False
-                    print(f'cars {k} position {cars[k].position[1]} and car {k-1} position 0 {cars[k-1].position[0]}')
-                    print(f'\nCar {k} stoped at {cars[k].position[1]} bc it is too close to the car {k-1} at {cars[k-1].position[0]} in front at time {time} ')
+                    print(f'\nCar {k} at position {cars[k].position[1]} and car {k-1} at position {cars[k-1].position[0]}')
+                    print(f'\nCar {k} stopped at {cars[k].position[1]} because it is too close to the car {k-1} at {cars[k-1].position[0]} in front, at time {time}')
+
                 else:
+
                     cars[k].ability_to_move = True
 
-            # Move the cars that have the ability to move
+            # Moves the cars that have the ability to move.
             for k in range(len(cars)):
+
                 print(f'\nCar {k} is at {cars[k].position} at {time}.')
+
                 if cars[k].ability_to_move == True:
                     
                     cars[k].position = cars[k].move(self.time_step)
                     #print(f'\nCar {k} is at {cars[k].position} at {time}.')
 
-            
             position_history.append(cars.get_positions().copy())
-            
-                    
                 
             time += self.time_step
 
         print(f'\nFinal positions of the cars: {cars.get_positions()}')
         print(f'\nPosition history: {position_history}')
+
         return time, position_history
 
+'''
+
     def handmade_animated_plot(self, car, road):
+        
         time, position_list = self.dynamics(car, road)
         position = np.array(position_list)
         x_linsp = np.linspace(0, road.length, len(position))
@@ -78,3 +86,5 @@ class Dynamics:
         plt.show()
 
         return ani
+
+    '''

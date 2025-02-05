@@ -16,7 +16,6 @@ class Car:
         self.length = self.position[1] - self.position[0]
         self.width = self.position[1] - self.position[0]
 
-
         if self.position[1] <= self.position[0]:
 
             print('\nInvalid car. The car must have a length greater than 0.')
