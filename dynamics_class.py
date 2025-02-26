@@ -1,3 +1,5 @@
+import numpy as np
+
 class Dynamics:
 
     def __init__(self,
@@ -5,84 +7,71 @@ class Dynamics:
 
         self.time_step = time_step
 
-    def dynamics(self,
-                 road, 
-                 cars):
+    def check_intial_car_positions(self, 
+                                   cars, 
+                                   road):
 
+        # For each car in cars list
         for index, car in enumerate(cars):
 
-            # If the front or back of each car is not on the road initially, stops the ability to move.
+            # If the front or back of each car is not on the road initially, stop the program
             if car.position[1] >= road.end_position or car.position[0] <= road.starting_position:
+                raise ValueError(f'\nCar {index} is not on the road.')
+            
+           # For all the cars except the last car
+            if index in range(len(cars)-1):
 
-                car.ability_to_move = False
-                print(f'\nCar {index} is not on the road.')
+                # If the back of the car is overlapping with the front of the car behind, stop the program
+                if car.position[0] < cars[index+1].position[1]: 
+                    raise ValueError(f'\nCar {index} is overlapping with car {index+1}.')
 
-            else: # The car is on the road, so it can move.
-                car.ability_to_move = True
-                print(f'\nCar {index} is on the road, at {car.position} it may move.')
+    def no_impact(self, 
+                  car, 
+                  car_in_front):
+
+        # If the front of the car is within 1m of the back of the car in front, return false
+        if car.position[1] >= car_in_front.position[0] - 1:
+            return False
+        else :
+            return True
+
+
+    def dynamics(self,
+                 cars, 
+                 road):
         
+        # Check the initial car position, will return an error if the cars are not on the road or overlapping
+        self.check_intial_car_positions(cars, road)
+
+        # Initialize the position history with the initial positions of the cars and set the time to 0
         position_history = [cars.get_positions()]
         time = 0
 
-        while cars[0].position[1] < road.end_position : # While the first car is still on the road, keep moving the cars.
+        # While at least one car is still on the road, keep moving the cars.
+        while np.any(cars.get_positions() < road.end_position) : 
 
-            # Stops the cars if they are too close to the car in front.
-            for k in range(len(cars)-1, 1, -1): # The loop starts with the last car and goes to the first car.
+            for index, car in enumerate(cars):
 
-                # If the front of the car is within 1m of the back of the car in front, this stops the ability to move.
-                if cars[k].position[1] >= cars[k-1].position[0] - 1:
+                # Create a copy of the car position before moving and a copy of the car position after moving
+                before_moving = car.position.copy()
+                after_moving = car.move(self.time_step)
 
-                    cars[k].ability_to_move = False
-                    print(f'\nCar {k} at position {cars[k].position[1]} and car {k-1} at position {cars[k-1].position[0]}')
-                    print(f'\nCar {k} stopped at {cars[k].position[1]} because it is too close to the car {k-1} at {cars[k-1].position[0]} in front, at time {time}')
+                # If the car is the first car, it can always move because there is no car in front 
+                if index == 0:
+                    car.ability_to_move = True
+                # Else, check if moving does not make it impact the car in front (no_impact returns false if there is an impact)
+                else :
+                    car.ability_to_move = self.no_impact(car, cars[index-1])
 
+                # If the car can move (no impact with the car in front), update the car position to the new position
+                if car.ability_to_move:
+                    car.position = after_moving
+                # Else, keep the car at the same position, effectively not making it move this time step
                 else:
+                    car.position = before_moving
 
-                    cars[k].ability_to_move = True
-
-            # Moves the cars that have the ability to move.
-            for k in range(len(cars)):
-
-                print(f'\nCar {k} is at {cars[k].position} at {time}.')
-
-                if cars[k].ability_to_move == True:
-                    
-                    cars[k].position = cars[k].move(self.time_step)
-                    #print(f'\nCar {k} is at {cars[k].position} at {time}.')
-
+            # Append the positions of all the cars after one time step
             position_history.append(cars.get_positions().copy())
-                
             time += self.time_step
 
-        print(f'\nFinal positions of the cars: {cars.get_positions()}')
-        print(f'\nPosition history: {position_history}')
-
         return time, position_history
-
-'''
-
-    def handmade_animated_plot(self, car, road):
-        
-        time, position_list = self.dynamics(car, road)
-        position = np.array(position_list)
-        x_linsp = np.linspace(0, road.length, len(position))
-        x_axis = np.ones(len(position))
-
-        fig, ax = plt.subplots()
-        line, = ax.plot([], [])
-        ax.set_xlim([0, road.length])
-        ax.set_ylim([0, road.length])
-
-        def update(frame):
-
-            line.set_xdata([x_axis[frame], x_axis[frame]])
-            line.set_ydata(position[frame])
-
-            return line,
-
-        ani = animation.FuncAnimation(fig, update, frames=len(position), interval=100, blit=True)
-        plt.show()
-
-        return ani
-
-    '''

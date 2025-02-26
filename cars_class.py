@@ -3,7 +3,6 @@ import numpy as np
 class Cars(list):
 
     def __init__(self, list):
-
         super().__init__(list)
 
     def get_positions(self):
@@ -13,3 +12,7 @@ class Cars(list):
     def get_speeds(self):
 
         return np.array([car.speed for car in self])
+    
+    def width(self):
+
+        return np.array([car.width for car in self])
