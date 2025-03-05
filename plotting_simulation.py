@@ -67,7 +67,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
         elapsed_time = frame * time_step 
         time_text.set_text(f'Time: {elapsed_time:.2f} s')
 
-        return lines + [time_text], rate
+        return lines + [time_text]
 
     # Animation instructions
     ani = animation.FuncAnimation(fig, update, init_func=init, frames=len(positions), interval=100, blit=True)
