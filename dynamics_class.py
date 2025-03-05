@@ -30,7 +30,7 @@ class Dynamics:
                   car_in_front):
 
         # If the front of the car is within 1m of the back of the car in front, return false
-        if car.position[1] >= car_in_front.position[0] - 1:
+        if car.position[1] >= car_in_front.position[0] - 3:
             return False
         else :
             return True
