@@ -63,7 +63,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
         for i in range(len(cars)):
             lines[i].set_data([positions[frame, i, 0],positions[frame, i, 1]], [y_axis[i], y_axis[i+1]])
 
-
+        # Time elapsed since the beginning of the simulation
         elapsed_time = frame * time_step 
         time_text.set_text(f'Time: {elapsed_time:.2f} s')
 
@@ -83,4 +83,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
 
     plt.show()
 
-    return animated_plot
+    # The clearance time of the road is the time it takes for the last car to exit the road
+    time_to_exit = len(positions)*time_step
+
+    return animated_plot, time_to_exit
