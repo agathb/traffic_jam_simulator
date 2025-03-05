@@ -15,15 +15,24 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     fig, ax = plt.subplots(figsize=(7, 5))
 
     # A color list to have different colored cars (can have up to 8 cars, but could theoretically have the whole matplotlib palette)
-    color_list = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white', 'Lime', 'Fuchsia', 'Silver','Gray', 'Maroon','Olive','Purple','Teal','Navy']
+    color_list = [
+    '#1E3A5F',  # Vibrant Dark Blue
+    '#6A1E9C',  # Vibrant Purple
+    '#D32F2F',  # Vibrant Red
+    '#1976D2',  # Vibrant Blue
+    '#388E3C',  # Vibrant Green
+    '#F57C00',  # Vibrant Orange
+    '#7B1FA2',  # Vibrant Violet
+    '#C2185B'   # Vibrant Pink
+    ]
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color
-    lines = [ax.plot([], [], linewidth=cars.width()[i], color = color_list[i])[0] for i in range(len(cars))]
+    lines = [ax.plot([], [], linewidth=cars.width()[i]*2, color = color_list[i])[0] for i in range(len(cars))]
     
     # Instructions to have a pretty plot
-    ax.plot([road.starting_position, road.end_position], [road.vertical_position + 6, road.vertical_position + 6],
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position + 10, road.vertical_position + 10],
             color='black', linestyle='-', linewidth=1.1, label='Road edge')
-    ax.plot([road.starting_position, road.end_position], [road.vertical_position - 6, road.vertical_position - 6],
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position - 10, road.vertical_position - 10],
             color='black', linestyle='-', linewidth=1.1)
     ax.set_xlim([-20, road.length + 20])
     ax.set_ylim([-20, road.length + 20])
@@ -84,9 +93,8 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     # The clearance time of the road is the time it takes for the last car to exit the road
     time_to_exit = len(positions)*time_step
 
-    exit_text = ax.text(0.65, 0.9, f'Clearance Time: {time_to_exit:.2f} s', transform=ax.transAxes, fontsize=10,
+    exit_text = ax.text(0.05, 0.835, f'Clearance Time: {time_to_exit:.2f} s', transform=ax.transAxes, fontsize=10,
                         color='Black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3', alpha=0.8))
-
 
     plt.show()
 
