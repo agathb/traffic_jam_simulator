@@ -23,7 +23,7 @@ car_3 = c.Car(np.array([1, 4]), 5)
 cars = cs.Cars([car_1, car_2, car_3])
 
 # Create a road with a starting position and an end position
-road = r.Road(0, 80)
+road = r.Road(0, 500, vertical_position = 150)
 
 initialize_dynamics = d.Dynamics(time_step)
 

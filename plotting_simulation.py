@@ -10,7 +10,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
 
     positions = np.array(position_list)
     print(positions)
-    y_axis = np.ones(len(positions)) * 40  # A way to choose where the fixed y-axis is.
+    y_axis = np.ones(len(positions)) * road.vertical_position  # A way to choose where the fixed y-axis is.
 
     fig, ax = plt.subplots(figsize=(7, 5))
 
@@ -18,13 +18,13 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     color_list = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white']
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color
-    lines = [ax.plot([], [], linewidth=cars.width()[i] * 2, color = color_list[i])[0] for i in range(len(cars))]
+    lines = [ax.plot([], [], linewidth=cars.width()[i]*0.5, color = color_list[i])[0] for i in range(len(cars))]
     
     # Instructions to have a pretty plot
-    ax.plot([road.starting_position, road.end_position], [43, 43], color='black',
-            linestyle='-', linewidth=1.1, label='Road edge')
-    ax.plot([road.starting_position, road.end_position], [37, 37], color='black',
-            linestyle='-', linewidth=1.1)
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position + 3, road.vertical_position + 3],
+            color='black', linestyle='-', linewidth=1.1, label='Road edge')
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position - 3, road.vertical_position - 3],
+            color='black', linestyle='-', linewidth=1.1)
     ax.set_xlim([-20, road.length + 20])
     ax.set_ylim([-20, road.length + 20])
     ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.7)
