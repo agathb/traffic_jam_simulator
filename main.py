@@ -32,4 +32,4 @@ road = r.Road(0, 200, vertical_position = 160)
 initialize_dynamics = d.Dynamics(time_step)
 
 animation, time_to_exit = p.animated_plot(cars, road, time_step, initialize_dynamics)
-print(f'Time to exit: {time_to_exit} s')
+print(f'\nTime to clear the road: {time_to_exit} s')

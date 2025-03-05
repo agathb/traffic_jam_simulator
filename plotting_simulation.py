@@ -9,21 +9,21 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     simulated_time, position_list = dynamics_initialized.dynamics(cars, road)
 
     positions = np.array(position_list)
-    print(positions)
+    #print(positions)
     y_axis = np.ones(len(positions)) * road.vertical_position  # A way to choose where the fixed y-axis is
 
     fig, ax = plt.subplots(figsize=(7, 5))
 
     # A color list to have different colored cars (can have up to 8 cars, but could theoretically have the whole matplotlib palette)
     color_list = [
-    '#1E3A5F',  # Vibrant Dark Blue
-    '#6A1E9C',  # Vibrant Purple
-    '#D32F2F',  # Vibrant Red
-    '#1976D2',  # Vibrant Blue
-    '#388E3C',  # Vibrant Green
-    '#F57C00',  # Vibrant Orange
-    '#7B1FA2',  # Vibrant Violet
-    '#C2185B'   # Vibrant Pink
+    '#1E3A5F',  # Vibrant dark blue
+    '#6A1E9C',  # Vibrant purple
+    '#D32F2F',  # Vibrant red
+    '#1976D2',  # Vibrant blue
+    '#388E3C',  # Vibrant green
+    '#F57C00',  # Vibrant orange
+    '#7B1FA2',  # Vibrant violet
+    '#C2185B'   # Vibrant pink
     ]
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color
