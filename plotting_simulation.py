@@ -18,12 +18,12 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     color_list = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white', 'Lime', 'Fuchsia', 'Silver','Gray', 'Maroon','Olive','Purple','Teal','Navy']
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color
-    lines = [ax.plot([], [], linewidth=cars.width()[i]*0.5, color = color_list[i])[0] for i in range(len(cars))]
+    lines = [ax.plot([], [], linewidth=cars.width()[i], color = color_list[i])[0] for i in range(len(cars))]
     
     # Instructions to have a pretty plot
-    ax.plot([road.starting_position, road.end_position], [road.vertical_position + 3, road.vertical_position + 3],
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position + 6, road.vertical_position + 6],
             color='black', linestyle='-', linewidth=1.1, label='Road edge')
-    ax.plot([road.starting_position, road.end_position], [road.vertical_position - 3, road.vertical_position - 3],
+    ax.plot([road.starting_position, road.end_position], [road.vertical_position - 6, road.vertical_position - 6],
             color='black', linestyle='-', linewidth=1.1)
     ax.set_xlim([-20, road.length + 20])
     ax.set_ylim([-20, road.length + 20])
@@ -81,9 +81,13 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
 
     pause_button.on_clicked(toggle_pause)
 
-    plt.show()
-
     # The clearance time of the road is the time it takes for the last car to exit the road
     time_to_exit = len(positions)*time_step
+
+    exit_text = ax.text(0.65, 0.9, f'Clearance Time: {time_to_exit:.2f} s', transform=ax.transAxes, fontsize=10,
+                        color='Black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3', alpha=0.8))
+
+
+    plt.show()
 
     return animated_plot, time_to_exit
