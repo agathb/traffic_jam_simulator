@@ -9,11 +9,11 @@ import matplotlib
 # For the animated plot
 matplotlib.use('TkAgg') 
 
-# Set a time setp for the whole simulation
+# Set a time step for the whole simulation
 time_step = 0.5
 
 # Create at most 8 cars with different positions and speeds, assuring that the cars are on the road and not overlapping (otherwise the program will stop)
-# Ensure that car 1 is the one at the front of the road, car 2 is the one behind car 1, etc.
+# Ensure that car 1 is the one at the front of the road, car 2 is the one behind car 1, etc
 car_1 = c.Car(np.array([40, 44]), 45)
 car_2 = c.Car(np.array([36, 38]), 9)
 car_3 = c.Car(np.array([31, 34]), 12)

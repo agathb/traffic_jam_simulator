@@ -10,7 +10,7 @@ class Car:
                  length = None,
                  width = None):
 
-        # The car position will be a vector of 2 elements, for both the front and back of the car.
+        # The car position will be a vector of 2 elements, for both the front and back of the car
         self.position = position.astype(float)
         self.speed = speed
         self.length = self.position[1] - self.position[0]
@@ -30,7 +30,7 @@ class Car:
 
     def move(self, time_step):
 
-        time_step = np.array([time_step, time_step]) # Array because car position is an array.
+        time_step = np.array([time_step, time_step]) # Array because car position is an array
         self.position += self.speed * time_step
         #print(f'\nCar at {self.position} after a time of {time_step[0]} s at speed {self.speed} m/s.')
 

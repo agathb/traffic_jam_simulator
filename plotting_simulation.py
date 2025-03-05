@@ -10,7 +10,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
 
     positions = np.array(position_list)
     print(positions)
-    y_axis = np.ones(len(positions)) * road.vertical_position  # A way to choose where the fixed y-axis is.
+    y_axis = np.ones(len(positions)) * road.vertical_position  # A way to choose where the fixed y-axis is
 
     fig, ax = plt.subplots(figsize=(7, 5))
 
@@ -68,7 +68,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
         if is_paused[0]:
             return lines + [time_text]
 
-        # Update the position of each car, where the[positions[frame, i, 0],positions[frame, i, 1]] represents the position of the front and the back of the car at the time setp of the frame
+        # Update the position of each car, where the[positions[frame, i, 0],positions[frame, i, 1]] represents the position of the front and the back of the car at the time step of the frame
         for i in range(len(cars)):
             lines[i].set_data([positions[frame, i, 0],positions[frame, i, 1]], [y_axis[i], y_axis[i+1]])
 
