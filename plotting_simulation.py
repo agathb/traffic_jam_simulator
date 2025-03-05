@@ -43,7 +43,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     ax.set_title('Traffic simulation')
 
     # Car label lists to have the car number and its speed
-    car_labels = [f'Car {i} (speed: {cars.get_speeds()[i]} m/s)' for i in range(len(cars))]
+    car_labels = [f'Car {i+1} (speed: {cars.get_speeds()[i]} m/s)' for i in range(len(cars))]
     ax.legend(car_labels + ['Road edge'], facecolor='white', edgecolor='black', borderpad=1.5)
 
     plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
