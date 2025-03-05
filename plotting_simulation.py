@@ -62,7 +62,8 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
         # Update the position of each car, where the [frame-1, frame] represents the position of the front and the back of the car at the time setp of the frame
         for i in range(len(cars)): 
             #print('unsliced', positions[[frame-1, frame], i, 0],'sliced',positions[:frame, i, 0] )
-            lines[i].set_data(positions[[frame-1, frame], i, 0], [y_axis[frame-1], y_axis[frame]])
+            lines[i].set_data(positions[[frame, frame+1], i, 0], [y_axis[frame], y_axis[frame+1]])
+            print(positions[[frame-1, frame], i, 0])
 
         elapsed_time = frame * time_step
         time_text.set_text(f'Time: {elapsed_time:.2f} s')
