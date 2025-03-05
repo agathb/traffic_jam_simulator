@@ -15,7 +15,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     fig, ax = plt.subplots(figsize=(7, 5))
 
     # A color list to have different colored cars (can have up to 8 cars, but could theoretically have the whole matplotlib palette)
-    color_list = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white']
+    color_list = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white', 'Lime', 'Fuchsia', 'Silver','Gray', 'Maroon','Olive','Purple','Teal','Navy']
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color
     lines = [ax.plot([], [], linewidth=cars.width()[i]*0.5, color = color_list[i])[0] for i in range(len(cars))]
@@ -59,16 +59,15 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
         if is_paused[0]:
             return lines + [time_text]
 
-        # Update the position of each car, where the [frame-1, frame] represents the position of the front and the back of the car at the time setp of the frame
-        for i in range(len(cars)): 
-            #print('unsliced', positions[[frame-1, frame], i, 0],'sliced',positions[:frame, i, 0] )
+        # Update the position of each car, where the[positions[frame, i, 0],positions[frame, i, 1]] represents the position of the front and the back of the car at the time setp of the frame
+        for i in range(len(cars)):
             lines[i].set_data([positions[frame, i, 0],positions[frame, i, 1]], [y_axis[i], y_axis[i+1]])
-            print('positon frame', positions[frame, i, 0], positions[frame, i, 1])
 
-        elapsed_time = frame * time_step
+
+        elapsed_time = frame * time_step 
         time_text.set_text(f'Time: {elapsed_time:.2f} s')
 
-        return lines + [time_text]
+        return lines + [time_text], rate
 
     # Animation instructions
     ani = animation.FuncAnimation(fig, update, init_func=init, frames=len(positions), interval=100, blit=True)

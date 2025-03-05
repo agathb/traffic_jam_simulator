@@ -17,7 +17,7 @@ time_step = 0.5
 # Ensure that car 1 is the one at the front of the road, car 2 is the one behind car 1, etc.
 car_1 = c.Car(np.array([10, 14]), 5)
 car_2 = c.Car(np.array([5, 9]), 9)
-car_3 = c.Car(np.array([1, 4]), 5)
+car_3 = c.Car(np.array([1, 4]), 12)
 
 # Create a list of cars
 cars = cs.Cars([car_1, car_2, car_3])
