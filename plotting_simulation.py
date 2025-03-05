@@ -98,4 +98,6 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
 
     plt.show()
 
+    ani.save('test.gif', writer='pillow')
+
     return animated_plot, time_to_exit
