@@ -23,7 +23,28 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     '#388E3C',  # Vibrant green
     '#F57C00',  # Vibrant orange
     '#7B1FA2',  # Vibrant violet
-    '#C2185B'   # Vibrant pink
+    '#C2185B',  # Vibrant pink
+    'lightgreen', 
+    'lightblue',
+    'lightcoral',
+    'lightcyan',
+    'lightgray',
+    'darkgreen',
+    'darkblue',
+    'darkred',
+    'darkorange',
+    'darkviolet',
+    'darkgoldenrod',
+    'mediumseagreen',
+    'mediumslateblue',
+    'mediumvioletred',
+    'mediumspringgreen',
+    'mediumturquoise',
+    'mediumaquamarine',
+    'mediumblue',
+    'mediumorchid',
+    'mediumseagreen',
+    'mediumslateblue',
     ]
 
     # Create a list of axes to plot for each car, with its own width (proportional to his length), label and color

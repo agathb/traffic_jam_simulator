@@ -1,6 +1,6 @@
 import numpy as np
 
-class Dynamics:
+class Dynamics_example:
 
     def __init__(self,
                  time_step):
@@ -74,12 +74,13 @@ class Dynamics:
                     car.position = after_moving
                 # Else, keep the car at the same position, effectively not making it move this time step
                 else:
-                    car.speed =  car.speed /2
+                    car.speed =  car.speed/2
                     if self.no_impact(car, cars[index-1]):
                         car.position = after_moving
-                        car.speed = car.speed *2
+                        car.speed = car.speed*2
                     else:
                         car.position = before_moving
+                    
 
             # Append the positions of all the cars after one time step
             position_history.append(cars.get_positions().copy())
