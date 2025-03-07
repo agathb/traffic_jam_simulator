@@ -25,7 +25,7 @@ for position in range(100,0,-8):
 cars = cs.Cars([car_i for car_i in car])
 
 # Create a road with a starting position and an end position
-road = r.Road(0, 160, vertical_position = 160)
+road = r.Road(0, 160, vertical_position = 140)
 
 initialize_dynamics = d.Dynamics_example(time_step)
 

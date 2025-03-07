@@ -64,7 +64,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     ax.set_title('Traffic simulation')
 
     # Car label lists to have the car number and its speed
-    car_labels = [f'Car {i+1} (speed: {cars.get_speeds()[i]} m/s)' for i in range(len(cars))]
+    car_labels = [f'Car {i+1} (speed: {cars.get_speeds()[i]:.1f} m/s)' for i in range(len(cars))]
     ax.legend(car_labels + ['Road edge'], facecolor='white', edgecolor='black', borderpad=1.5)
 
     plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
@@ -114,7 +114,7 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     # The clearance time of the road is the time it takes for the last car to exit the road
     time_to_exit = len(positions)*time_step
 
-    exit_text = ax.text(0.05, 0.835, f'Clearance Time: {time_to_exit:.2f} s', transform=ax.transAxes, fontsize=10,
+    exit_text = ax.text(0.25, 0.9, f'Clearance Time: {time_to_exit:.2f} s', transform=ax.transAxes, fontsize=10,
                         color='Black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.3', alpha=0.8))
 
     plt.show()

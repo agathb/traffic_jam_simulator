@@ -14,14 +14,14 @@ time_step = 0.5
 
 # Create at most 8 cars with different positions and speeds, assuring that the cars are on the road and not overlapping (otherwise the program will stop)
 # Ensure that car 1 is the one at the front of the road, car 2 is the one behind car 1, etc
-car_1 = c.Car(np.array([40, 44]), 45)
-car_2 = c.Car(np.array([36, 38]), 9)
-car_3 = c.Car(np.array([31, 34]), 12)
-car_4 = c.Car(np.array([27, 29]), 5)
-car_5 = c.Car(np.array([21, 25]), 37)
-car_6 = c.Car(np.array([17, 19]), 23)
-car_7 = c.Car(np.array([12, 15]), 9)
-car_8 = c.Car(np.array([5, 10]), 14)
+car_1 = c.Car(np.array([40, 44]), 15)
+car_2 = c.Car(np.array([36, 38]), 8)
+car_3 = c.Car(np.array([31, 34]), 15)
+car_4 = c.Car(np.array([27, 29]), 15)
+car_5 = c.Car(np.array([21, 25]), 15)
+car_6 = c.Car(np.array([17, 19]), 15)
+car_7 = c.Car(np.array([12, 15]), 15)
+car_8 = c.Car(np.array([5, 10]), 15)
 
 # Create a list of cars
 cars = cs.Cars([car_1, car_2, car_3, car_4, car_5, car_6, car_7, car_8])
