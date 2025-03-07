@@ -27,7 +27,6 @@ def animated_plot(cars, road, time_step, dynamics_initialized):
     'lightgreen', 
     'lightblue',
     'lightcoral',
-    'lightcyan',
     'lightgray',
     'darkgreen',
     'darkblue',

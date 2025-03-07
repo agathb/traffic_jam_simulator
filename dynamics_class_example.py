@@ -56,6 +56,7 @@ class Dynamics_example:
                 # Create a copy of the car position before moving and a copy of the car position after moving
                 before_moving = car.position.copy()
                 after_moving = car.move(self.time_step)
+                #car.speed = initial_speed[index]
 
                 # If the car is the first car, it can always move because there is no car in front 
                 if index == 0:
