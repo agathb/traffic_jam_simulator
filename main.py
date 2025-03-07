@@ -14,8 +14,8 @@ time_step = 0.5
 
 # Create at most 8 cars with different positions and speeds, assuring that the cars are on the road and not overlapping (otherwise the program will stop)
 # Ensure that car 1 is the one at the front of the road, car 2 is the one behind car 1, etc
-car_1 = c.Car(np.array([40, 44]), 15)
-car_2 = c.Car(np.array([36, 38]), 8)
+car_1 = c.Car(np.array([70, 74]), 15)
+car_2 = c.Car(np.array([65, 68]), 8)
 car_3 = c.Car(np.array([31, 34]), 15)
 car_4 = c.Car(np.array([27, 29]), 15)
 car_5 = c.Car(np.array([21, 25]), 15)
