@@ -46,10 +46,11 @@ class Dynamics_example:
         # Initialize the position history with the initial positions of the cars and set the time to 0
         position_history = [cars.get_positions()]
         time = 0
+        initial_speed = cars.get_speeds()
 
         # While at least one car is still on the road, keep moving the cars.
         while np.any(cars.get_positions() < road.end_position) : 
-            initial_speed = cars.get_speeds()
+            
 
             for index, car in enumerate(cars):
 
@@ -63,12 +64,12 @@ class Dynamics_example:
                     car.ability_to_move = True            
                 # Else, check if moving does not make it impact the car in front (no_impact returns false if there is an impact)              
                 else :
-                    car.ability_to_move = self.no_impact(car, cars[index-1])
-                    if index == 1:
-                        if time == 1:
-                            car.speed = car.speed/3
-                        else :
-                            car.speed = initial_speed[index]
+                    car.ability_to_move = self.no_impact(car, cars[index-1]) 
+                    if index == 1 and time < 1:
+                        car.speed = car.speed/3
+                    elif index == 1 and time > 1:
+                        car.speed = initial_speed[index]
+                        
 
                 # If the car can move (no impact with the car in front), update the car position to the new position
                 if car.ability_to_move:
@@ -78,7 +79,7 @@ class Dynamics_example:
                     car.speed =  car.speed/2
                     if self.no_impact(car, cars[index-1]):
                         car.position = after_moving
-                        car.speed = car.speed*2
+                        car.speed = initial_speed[index]
                     else:
                         car.position = before_moving
                     
