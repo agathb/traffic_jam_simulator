@@ -65,9 +65,9 @@ class Dynamics_example:
                 # Else, check if moving does not make it impact the car in front (no_impact returns false if there is an impact)              
                 else :
                     car.ability_to_move = self.no_impact(car, cars[index-1]) 
-                    if index == 1 and time < 1:
-                        car.speed = car.speed/3
-                    elif index == 1 and time > 1:
+                    if index == 1 and time < 2:
+                        car.speed = car.speed/4
+                    elif index == 1 and time > 2:
                         car.speed = initial_speed[index]
                         
 
@@ -79,9 +79,11 @@ class Dynamics_example:
                     car.speed =  car.speed/2
                     if self.no_impact(car, cars[index-1]):
                         car.position = after_moving
-                        car.speed = initial_speed[index]
+                        car.speed = car.speed*2
                     else:
                         car.position = before_moving
+                    #car.speed = initial_speed[index]*2
+                    
                     
 
             # Append the positions of all the cars after one time step
